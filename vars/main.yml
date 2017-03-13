@@ -1,0 +1,11 @@
+---
+# File: /etc/ansible/roles/use-proxy/vars/main.yml
+
+proxy_port: 3128
+local_proxy_port: "{{proxy_port}}"
+proxy_server: tunnel@demo.example.com
+proxy_server_ssh_port: 22
+
+proxy_env:
+  http_proxy: "http://localhost:{{local_proxy_port}}"
+  https_proxy: "http://localhost:{{local_proxy_port}}"

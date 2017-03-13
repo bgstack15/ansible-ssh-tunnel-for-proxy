@@ -1,0 +1,21 @@
+---
+# File: /etc/ansible/roles/use-proxy/tasks/main.yml
+
+- name: clear any ssh tunnel
+  shell: ps -ef | grep -iE -- "ss[h].*{{local_proxy_port}}" | awk '{print $2}' | xargs kill -9
+  ignore_errors: yes
+
+- name: start ssh tunnel
+  shell: nohup ssh -N -p {{proxy_server_ssh_port}} {{proxy_server}} -L {{local_proxy_port}}/localhost/{{proxy_port}} &
+  notify: stop ssh tunnel
+
+## execute task with the proxy
+#- name: execute task
+#  get_url:
+#    dest: /tmp/
+#    url: http://albion320.no-ip.biz/smith122/repo/
+#  register: env
+#  environment: "{{proxy_env}}"
+
+#- debug:
+#    var: env

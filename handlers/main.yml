@@ -1,0 +1,5 @@
+---
+# File: /etc/ansible/roles/use-proxy/handlers/main.yml
+
+- name: stop ssh tunnel
+  shell: ps -ef | grep -iE -- "ss[h].*{{local_proxy_port}}" | awk '{print $2}' | xargs kill -9

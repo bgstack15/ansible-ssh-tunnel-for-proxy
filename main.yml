@@ -1,0 +1,18 @@
+---
+# File: /etc/ansible/roles/use-proxy/main.yml
+# Author: bgstack15
+# Startdate: 2017-03-13 10:30
+# Title: Ansible Role That Initializes an SSH Reverse Tunnel for http_proxy
+# Purpose: To make it easy to yum update on hosts that cannot reach repos normally
+# Usage:
+# Reference:
+# Improve:
+# Document: Spread out within this directory
+
+- hosts: all
+  tasks:
+    - include: tasks/main.yml
+  handlers:
+    - handlers/main.yml
+  vars_files:
+    - vars/main.yml
